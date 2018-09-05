@@ -20,5 +20,5 @@ module.exports = (app) => {
     // Delete Account
     app.delete('/user/:noteId', notes.delete);
 
-    app.get('/data' , notes.data);
+    app.post('/getBus' , notes.getBus);
 }

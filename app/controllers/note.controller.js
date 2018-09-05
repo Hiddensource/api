@@ -124,8 +124,11 @@ exports.delete = (req, res) => {
 };
 
 
-exports.data = (req, res) => {
-    var url="http://developer.goibibo.com/api/bus/search/?app_id=045ea148&app_key=3e449f37d35d060398943020050fcee5&format=json&source=delhi&destination=dehradun&dateofdeparture=20180905";
+exports.getBus = (req, res) => {
+    var source = req.body.source;
+    var destination = req.body.destination;
+    var ddate = req.body.ddate;
+    var url="http://developer.goibibo.com/api/bus/search/?app_id=045ea148&app_key=3e449f37d35d060398943020050fcee5&format=json&source="+source+"&destination="+destination+"&dateofdeparture="+ddate+" ";
 
     function getUserDetails() {
         // var origin1=document.getElementById("origin1").value;
@@ -215,7 +218,7 @@ exports.data = (req, res) => {
     
     res.send({Detail});}
     else{
-        alert("error");
+        res.send("error");
     }
     }
   getUserDetails();  
