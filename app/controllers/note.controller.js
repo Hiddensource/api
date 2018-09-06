@@ -176,6 +176,9 @@ exports.getBus = (req, res) => {
     
         val=data.data.onwardflights[i].busCondition;
         obj['busCondition'] = val;
+
+        val=data.data.onwardflights[i].arrdate;
+        obj['arrdate'] = val;
     
         val=data.data.onwardflights[i].destination;
         obj['destination'] = val;
@@ -203,12 +206,48 @@ exports.getBus = (req, res) => {
     
         val=data.data.onwardflights[i].fare.totalfare;
         obj['fare'] = val;
-    
+            
+        var b=[];
+        for(var j=0; j<data.data.onwardflights[i].BPPrims.list.length;j++){
+            var BP = {};
+            
+        val=data.data.onwardflights[i].BPPrims.list[0].BPAddress;
+        BP['BPAddress'] = val;
+        val=data.data.onwardflights[i].BPPrims.list[0].BPContactNumber;
+        BP['BPContactNumber'] = val;
+        val=data.data.onwardflights[i].BPPrims.list[0].BPId;
+        BP['BPId'] = val;
         val=data.data.onwardflights[i].BPPrims.list[0].BPLocation;
-        obj['BPLocation'] = val;
+        BP['BPLocation'] = val;
+        val=data.data.onwardflights[i].BPPrims.list[0].BPName;
+        BP['BPName'] = val;
+        val=data.data.onwardflights[i].BPPrims.list[0].BPTime;
+        BP['BPTime'] = val;
+
+        b.push(BP);
+        }
+        obj['BP'] = b; 
+        
+        var d=[];
+        for(var j=0; j<data.data.onwardflights[i].DPPrims.list.length;j++){
+            var DP = {};
+            
+        val=data.data.onwardflights[i].DPPrims.list[0].BPAddress;
+        DP['DPAddress'] = val;
+        val=data.data.onwardflights[i].DPPrims.list[0].BPContactNumber;
+        DP['DPContactNumber'] = val;
+        val=data.data.onwardflights[i].DPPrims.list[0].DPId;
+        DP['DPId'] = val;
+        val=data.data.onwardflights[i].DPPrims.list[0].DPLocation;
+        DP['DPLocation'] = val;
+        val=data.data.onwardflights[i].DPPrims.list[0].DPName;
+        DP['DPName'] = val;
+        val=data.data.onwardflights[i].DPPrims.list[0].DPTime;
+        DP['DPTime'] = val;
     
-        val=data.data.onwardflights[i].DPPrims.list[0].DPAddress;
-        obj['DPAddress'] = val;
+        d.push(DP);
+        }
+        obj['DP'] = d; 
     
         val=data.data.onwardflights[i].RouteSeatTypeDetail.list[0].SeatsAvailable;
         obj['SeatsAvailable'] = val;
